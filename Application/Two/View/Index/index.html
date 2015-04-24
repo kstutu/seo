@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content ="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="blank" />
+<meta name="format-detection" content="telephone=no" />
+<title>{$title|default="Dr.K"}{$titleLater}</title>
+<link rel="stylesheet" href="__PUBLIC__/css/style.css">
+<link rel="stylesheet" href="__PUBLIC__/css/animate.min.css">
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/hammer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.hammer.js"></script>
+</head>
+<body>
+
+<div id="header" class="wraper">
+	<a href="{:U('mpj')}">
+	<div class="HLeft HTop">
+		<img src="__PUBLIC__/img/ic/mpj.png" alt="">
+	</div>
+	</a>
+	<h1>{$title|default="Dr.K"}</h1>
+	<div class="HRight HTop">
+		<img src="__PUBLIC__/img/ic/topR.png" alt="">
+	</div>
+</div>
+
+<div id="article" class="wraper">
+	<volist id="info" name="dv">
+	<div class="userFull animated bounceInRight">
+	<div class="userCard">
+		<div class="userCardLeft">
+			<img src="__PUBLIC__/img/1.jpg" alt="">
+			<p><i></i><span>距32m</span></p>
+		</div>
+		<div class="userCardRight">
+			<div class="ucr_a">{$info.username}</div>
+			<div class="ucr_b">{$info.company}</div>
+			<div class="ucr_c">{$info.job}</div>
+			<div class="ucr_d"><i></i><span>创业者</span><span>互联网</span></div>
+		</div>
+		<div class="userCardTip"><img src="__PUBLIC__/img/tips/t{$info.ustatus}.png" alt=""></div>
+	</div>
+	<div class="u2title">
+		<volist name="info.info" id="vs">
+			<if condition="$i eq 1"><h2><a class="u2link" href="javascript:void(0);">{$vs.title}</a></h2></if>
+			<if condition="$i eq 1"><span class="jqu2 u2span"></span><else /><span class="jqu2"></span></if>
+		</volist>
+	</div>
+	<div class="userInfo hammer">
+		<volist name="info.info" id="v">
+			<if condition="$i eq 1"><div class="userInfo_num animated dq_num"><else /><div class="userInfo_num animated"></if>
+			<div class="userInfo_m"><if condition="$v['type'] eq 1">{$v.content}<else /><img src="__PUBLIC__/Uploads/{$v.content}"></if></div>
+		</div>
+		</volist>
+	</div>
+	</div>
+	</volist>
+</div>
+
+<div class="userOs">
+	<div class="userOsb"><a class="userOsb_ps" href="javascript:void(0);">不想见</a><a class="userOsb_cg" href="javascript:void(0);">换名片</a></div>
+</div>
+
+<div class="sendMp animated bounceIn">
+	<div class="sMpH">递名片</div>
+	<div class="sMpM"><textarea>李三您好！我是毕马威公司的赵硕，这是我的名片，请惠存!</textarea></div>
+	<div class="sMpF"><a class="sendMpNo" href="javascript:void(0);">取消</a><a class="sendMpYes" style="border-left:1px solid #d0cfcf;width:49%;color:#127ac3;" href="javascript:void(0);">确认</a></div>
+</div>
+
+<include file="footer" />
+
+<script type="text/javascript" src="__PUBLIC__/js/extend.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('.userOsb_cg').click(function(){
+		var mp = $('.sendMp');
+		mp.show();
+		mp.mask();
+		mp.center();
+		$('.sendMpYes').click(function(){
+			mp.addClass('zoomOutRight');
+			mp.fadeOut(800,function(){
+				$('#fun_mask').remove();
+				mp.hide().removeClass('zoomOutRight');
+			});
+		});
+		$('.sendMpNo').click(function(){
+			mp.addClass('bounceOut');
+			mp.fadeOut(800,function(){
+				$('#fun_mask').remove();
+				mp.hide().removeClass('bounceOut');
+			});
+		});
+	});
+
+
+	$('.userFull').eq(0).show();
+	
+	var hammertime = $('.hammer').hammer();
+	hammertime.on('swiperight', function(ev){
+		var num = $(this).children('.userInfo_num').length;
+		if(num==1){return false;}
+		$('.userInfo_num').each(function(){
+			if($(this).hasClass('dq_num')){
+				var i = $(this).index();
+				var idx = i - 1;
+				if(i==0){
+					idx = num - 1;
+				}
+				$('.userInfo_num').eq(idx).addClass('dq_num').addClass('bounceInLeft');
+				$('.userInfo_num').eq(i).removeClass('dq_num bounceInLeft bounceInRight');
+				$('.jqu2').eq(idx).addClass('u2span');
+				$('.jqu2').eq(i).removeClass('u2span');
+				return false;
+			}
+		});
+	});
+	hammertime.on('swipeleft', function(ev){
+		var num = $(this).children('.userInfo_num').length;
+		if(num==1){return false;}
+		$('.userInfo_num').each(function(){
+			if($(this).hasClass('dq_num')){
+				var i = $(this).index();
+				var idx = i + 1;
+				if(idx == num){
+					idx = 0;
+				}
+				$('.userInfo_num').eq(idx).addClass('dq_num').addClass('bounceInRight');				
+				$('.userInfo_num').eq(i).removeClass('dq_num bounceInRight bounceInLeft');
+				$('.jqu2').eq(idx).addClass('u2span');
+				$('.jqu2').eq(i).removeClass('u2span');
+				return false;
+			}
+		});
+	});
+
+	$('.userOsb_ps').click(function(){
+		var first = 0;
+		$('.userFull').eq(first).addClass('bounceOutLeft').fadeOut(600,function(){
+			$(this).remove();
+		});
+		first++;
+		var l = $('.userFull').length;
+		if(l==1){
+			window.location.reload();
+		}
+		$('.userFull').eq(first).show().addClass('bounceInRight');
+	});
+	
+});
+</script>

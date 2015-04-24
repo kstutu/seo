@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content ="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="blank" />
+<meta name="format-detection" content="telephone=no" />
+<title>{$title|default="Dr.K"}{$titleLater}</title>
+<link rel="stylesheet" href="__PUBLIC__/css/style.css">
+<link rel="stylesheet" href="__PUBLIC__/css/animate.min.css">
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/hammer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.hammer.js"></script>
+</head>
+<body>
+
+<div id="header" class="wraper">
+	<div class="HLeft HTop" onclick="window.history.go(-1)">
+		<img style="width:25px;" src="__PUBLIC__/img/ic/topLB.png" alt="">
+	</div>
+	<h1>{$title|default="Dr.K"}</h1>
+	<div class="HRight HTop">
+		<img src="__PUBLIC__/img/ic/topR.png" alt="">
+	</div>
+</div>
+
+<div id="article" class="wraper">
+	<a href="{:U('editmp')}"><div class="myCardSimple">我的名片</div></a>
+
+	<div class="simpleCard">
+		<div class="userCard">
+			<div class="userCardLeft">
+				<img src="__PUBLIC__/img/1.jpg" alt="">
+				<p><i></i><span>距32m</span></p>
+			</div>
+			<div class="userCardRight">
+				<div class="ucr_a">Simon.Zhu</div>
+				<div class="ucr_b">KPMG</div>
+				<div class="ucr_c">MC-ITA</div>
+				<div class="ucr_d"><i></i><span>创业者</span><span>互联网</span></div>
+			</div>
+			<div class="userCardTip"><img src="__PUBLIC__/img/tips/t3.png" alt=""></div>
+		</div>
+	</div>
+	
+	<div class="simpleCard">
+		<div class="userCard">
+			<div class="userCardLeft">
+				<img src="__PUBLIC__/img/2.jpg" alt="">
+				<p><i></i><span>距32m</span></p>
+			</div>
+			<div class="userCardRight">
+				<div class="ucr_a">Zhaonan.Zhang</div>
+				<div class="ucr_b">KPMG</div>
+				<div class="ucr_c">MC-ITA</div>
+				<div class="ucr_d"><i></i><span>创业者</span><span>互联网</span></div>
+			</div>
+			<div class="userCardTip"><img src="__PUBLIC__/img/tips/t1.png" alt=""></div>
+		</div>
+	</div>
+	
+</div>
+
+<include file="footer" />

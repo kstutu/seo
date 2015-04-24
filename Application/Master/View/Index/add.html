@@ -1,0 +1,83 @@
+<include file="header" />
+	
+	<div id="article" class="wraper">
+		<if condition="$data['id']">
+		<form action="{:U('article_update')}" method="post" id="ca_post">
+		<input type="hidden" name="id" value="{$data.id}">
+		<else />
+		<form action="{:U('article_create')}" method="post" id="ca_post">
+		</if>
+		<div class="formDv">
+			<h1>规范填写内容</h1>
+		</div>
+		<div class="formDv">
+			<input type="text" class="formTxt" name="title" id="title" placeholder="Article Title" value="{$data.title}">
+		</div>
+		<div class="formDv">
+			<input type="text" class="formTxt" name="title_page" id="title_page" placeholder="Page Title" value="{$data.title_page}">
+		</div>
+		<div class="formDv">
+			<input type="text" class="formTxt" name="keywords" id="keywords" placeholder="KeyWords" value="{$data.keywords}">
+		</div>
+		<div class="formDv">
+			<input type="text" class="formTxt" name="description" id="description" placeholder="Description" value="{$data.description}">
+		</div>
+		<div class="formDv">
+			<textarea name="content" id="content" style="width:100%;height:400px;visibility:hidden;">{$data.content}</textarea>
+		</div>
+		<div class="formDv">
+			<input type="submit" class="formSubmit" value="Submit">
+		</div>
+		</form>
+	</div>
+
+</body>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script charset="utf-8" src="__PUBLIC__/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="__PUBLIC__/kindeditor/lang/zh_CN.js"></script>
+<script type="text/javascript">
+var editor;
+KindEditor.ready(function(K) {
+	editor = K.create('textarea[name="content"]', {
+		resizeType : 1,
+		allowPreviewEmoticons : false,
+		allowImageUpload : true,
+		items : [
+			'source','preview','|','formatblock','fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+			'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+			'insertunorderedlist', '|', 'emoticons', 'image', 'link','|','clearhtml'],
+		afterCreate : function() { 
+			this.sync(); 
+		}, 
+		afterBlur:function(){ 
+			this.sync(); 
+		}
+	});
+});
+
+$(function(){
+
+	$('#ca_post').submit(function(){
+		var ln = $(this).attr('action');
+		var dt = $(this).serializeArray();
+		$.ajax({
+			url : ln,
+			type : 'post',
+			dataType : 'json',
+			data : dt,
+			success : function(json){
+				if(json.status==1){
+					alert('Success');
+					window.location.href = '{:U("lists")}';
+				}else{
+					alert(json.tips);
+				}
+			}
+		});
+		return false;
+	});
+});
+
+
+</script>
+</html>

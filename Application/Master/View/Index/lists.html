@@ -1,0 +1,33 @@
+<include file="header" />
+	
+	<div id="article" class="wrapers">
+		<table id="lists_tb">
+			<tr>
+				<!-- <th>Id</th> -->
+				<th>Title</th>
+				<th width="160">Time</th>
+				<th width="140">IP</th>
+				<th width="120">Edit</th>
+				<th width="120">Delete</th>
+			</tr>
+			<volist name="data" id="v">
+			<tr>
+				<!-- <td>{$v.id}</td> -->
+				<td>{$v.title}</td>
+				<td>{$v.time|date='Y.m.d H:i',###}</td>
+				<td>{$v.ip|long2ip}</td>
+				<td><a class="link_tb" href="{:U('edit',array('id'=>$v['id']))}">Edit</a></td>
+				<td><a class="link_tb" href="{:U('article_delete',array('id'=>$v['id']))}">delete</a></td>
+			</tr>
+			</volist>
+		</table>
+	</div>
+
+</body>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script charset="utf-8" src="__PUBLIC__/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="__PUBLIC__/kindeditor/lang/zh_CN.js"></script>
+<script type="text/javascript">
+
+</script>
+</html>
