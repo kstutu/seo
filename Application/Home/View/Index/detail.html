@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content ="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="blank" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="Keywords" content="{$data.keywords}" />
+<meta name="Description" content="{$data.description}" />
+<title>{$title}</title>
+<link href="__PUBLIC__/css/main.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<div id="menu">
+	<div class="wraper">
+    	<span class="focus">首页</span>
+        <a class="logo">Seo.</a>
+        <span>关于我们</span>
+    </div>
+</div>
+<div id="view">
+	<div class="Varticle">
+		<div class="Vcontent">
+			<h2>{$data.title}</h2>
+			<h4><a class="iconTime">{$data.time|date="Y.m.d H:i",###}</a></h4>
+			<div class="rel_content">
+				{$data.content}
+			</div>
+		</div>
+	</div>
+</div>
+<div id="footer">
+	<p>© Power by Kstutu</p>
+</div>
+</body>
+</html>

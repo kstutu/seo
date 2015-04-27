@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{$title}</title>
+<link href="__PUBLIC__/css/main.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<div id="menu">
+	<div class="wraper">
+        <span class="focus">首页</span>
+        <a class="logo">Seo.</a>
+        <span>关于我们</span>
+    </div>
+</div>
+<div id="view">
+    <volist id="v" name="data">
+	<div class="Varticle">
+    	<div class="Vtime">
+        	<p><span class="day">{$v.time|date="d",###}</span></p>
+            <p><span class="month">{$v.time|date="m",###}</span></p>
+        </div>
+        <div class="Vcontent">
+        	<h2><a href="{:U('detail',array('id'=>$v['id']))}">{$v.title}</a></h2>
+            <p>{$v.description}</p>
+            <h4><a class="iconTime">{$v.time|date="Y.m.d H:i",###}</a></h4>
+        </div>
+    </div>
+    </volist>
+</div>
+<div id="footer">
+	<p>© Power by Kstutu</p>
+</div>
+</body>
+</html>

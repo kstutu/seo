@@ -3,8 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <title>{$title}</title>
+<link rel="stylesheet" href="__PUBLIC__/css/home.css">
 </head>
 <body>
-	
+	<div id="header"></div>
+	<div id="article" class="wraper">
+		<div class="articles">
+			<ul class="art_lists">
+				<volist name="data" id="v">
+				<li class="list_item"><a href="{:U('detail',array('id'=>$v['id']))}">{$v.title}</a><span>{$v.time|date="Y.m.d H:i",###}</span></li>
+				</volist>
+			</ul>
+		</div>
+	</div>
 </body>
 </html>
